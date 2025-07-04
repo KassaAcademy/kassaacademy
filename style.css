@@ -1,0 +1,90 @@
+        body {
+ 
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fdfdfd;
+  color: #067e2e;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure it stays on top of other content */
+  background: #111;
+  padding: 1.5em 3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+
+}
+
+header h1 {
+  color: #ffffff;
+  /* font-style:italic; */
+
+}
+
+/* header a img {
+  width: 20pc;
+  height: 5pc;
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip-path: circle(75%);
+} */
+
+/* #topLogo {
+  
+
+} */
+
+nav a {
+  margin: 0 1em;
+  text-decoration: none;
+  color: hwb(0 100% 0%);
+}
+
+
+
+
+section {
+  padding: 3em 2em;
+  max-width: 900px;
+  margin: auto;
+   text-align: center;
+}
+  .quote {
+  font-style: italic;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 10px;
+}
+
+
+
+
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #111;
+  color: white;
+  position: fixed; /* Positions the footer relative to the viewport */
+  bottom: 0; /* Anchors the footer to the bottom */
+  width: 100%; /* Makes the footer span the entire width */
+}
+
+footer .socials a {
+ 
+  color: white;
+  font-size: 1em;
+  text-decoration: none;
+
+  margin: 0 0.5em;
+
+  font-size: 1em;
+  text-decoration: none;
+}

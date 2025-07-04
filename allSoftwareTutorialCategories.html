@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Software Tutorial Categories</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #121212;
+      --card: #1f1f1f;
+      --text: #ffffff;
+      --accent: #00bfff;
+      --muted: #2c2c2c;
+    }
+
+    body.light {
+      --bg: #f0f0f0;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --accent: #007acc;
+      --muted: #e0e0e0;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: all 0.3s ease;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    input, select, button {
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    input, select {
+      background: var(--card);
+      color: var(--text);
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 1rem;
+      border-radius: 8px;
+      transition: background 0.3s;
+      display: block;
+      height: 100%;
+    }
+
+    .card:hover {
+      background-color: var(--muted);
+    }
+
+    .card h3 {
+      color: var(--accent);
+      margin-top: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+
+    @media (max-width: 600px) {
+      .controls {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body class="dark">
+
+  <h1>Software Tutorial Categories</h1>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search categories..." />
+    <select id="groupFilter">
+      <option value="">All Groups</option>
+      <option value="Web Development">Web Development</option>
+      <option value="Backend">Backend</option>
+      <option value="Frontend">Frontend</option>
+      <option value="Mobile">Mobile</option>
+      <option value="Database">Database</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Design">Design</option>
+      <option value="AI/ML">AI/ML</option>
+      <option value="Testing">Testing</option>
+    </select>
+    <button onclick="toggleTheme()">🌗 Toggle Mode</button>
+  </div>
+
+  <div class="grid" id="categoryGrid"></div>
+
+  <script>
+    const categories = [
+      { name: "HTML", group: "Web Development", description: "Structure your web pages" },
+      { name: "CSS", group: "Web Development", description: "Style and layout" },
+      { name: "JavaScript", group: "Frontend", description: "Add interactivity" },
+      { name: "TypeScript", group: "Frontend", description: "Typed JavaScript" },
+      { name: "React", group: "Frontend", description: "Component-based UI" },
+      { name: "Vue.js", group: "Frontend", description: "Progressive UI framework" },
+      { name: "Angular", group: "Frontend", description: "Enterprise-level frontend" },
+      { name: "Node.js", group: "Backend", description: "JS on the server" },
+      { name: "Express.js", group: "Backend", description: "Web server framework" },
+      { name: "Python (Flask)", group: "Backend", description: "Lightweight backend" },
+      { name: "Django", group: "Backend", description: "Full-featured Python web framework" },
+      { name: "PHP", group: "Backend", description: "Web backend scripting" },
+      { name: "Laravel", group: "Backend", description: "PHP framework" },
+      { name: "MySQL", group: "Database", description: "Relational DBMS" },
+      { name: "MongoDB", group: "Database", description: "NoSQL document database" },
+      { name: "PostgreSQL", group: "Database", description: "Advanced SQL database" },
+      { name: "Firebase", group: "Database", description: "Realtime cloud database" },
+      { name: "React Native", group: "Mobile", description: "Cross-platform apps" },
+      { name: "Flutter", group: "Mobile", description: "UI toolkit from Google" },
+      { name: "Android (Kotlin)", group: "Mobile", description: "Native Android dev" },
+      { name: "iOS (Swift)", group: "Mobile", description: "Native iOS dev" },
+      { name: "Docker", group: "DevOps", description: "Containerization" },
+      { name: "Git", group: "DevOps", description: "Version control" },
+      { name: "CI/CD", group: "DevOps", description: "Continuous integration & deployment" },
+      { name: "AWS", group: "DevOps", description: "Cloud hosting & tools" },
+      { name: "VS Code", group: "Tools", description: "Developer code editor" },
+      { name: "Jest", group: "Testing", description: "JavaScript testing" },
+      { name: "Cypress", group: "Testing", description: "End-to-end tests" },
+      { name: "Python (AI)", group: "AI/ML", description: "ML libraries in Python" },
+      { name: "TensorFlow", group: "AI/ML", description: "Google’s ML framework" },
+      { name: "Figma", group: "Design", description: "UI/UX Design tool" },
+      { name: "UX Principles", group: "Design", description: "User experience concepts" },
+    ];
+
+    const grid = document.getElementById("categoryGrid");
+    const search = document.getElementById("search");
+    const groupFilter = document.getElementById("groupFilter");
+
+    function slugify(text) {
+      return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+
+    function renderCards() {
+      grid.innerHTML = "";
+      const keyword = search.value.toLowerCase();
+      const group = groupFilter.value;
+
+      categories.forEach(cat => {
+        const matchesSearch = cat.name.toLowerCase().includes(keyword) || cat.description.toLowerCase().includes(keyword);
+        const matchesGroup = !group || cat.group === group;
+
+        if (matchesSearch && matchesGroup) {
+          const slug = slugify(cat.name);
+          const link = document.createElement("a");
+          link.href = `${slug}.html`;
+          link.className = "card-link";
+          link.innerHTML = `
+            <div class="card">
+              <h3>${cat.name}</h3>
+              <p>${cat.description}</p>
+              <small><em>${cat.group}</em></small>
+            </div>
+          `;
+          grid.appendChild(link);
+        }
+      });
+    }
+
+    search.addEventListener("input", renderCards);
+    groupFilter.addEventListener("change", renderCards);
+
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle("light");
+      localStorage.setItem("theme", body.classList.contains("light") ? "light" : "dark");
+    }
+
+    // Set initial theme
+    if (localStorage.getItem("theme") === "light") {
+      document.body.classList.add("light");
+    }
+
+    renderCards();
+  </script>
+</body>
+</html>

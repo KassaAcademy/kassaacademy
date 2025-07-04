@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tutorial Categories</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --card: #1e1e1e;
+      --text: #ffffff;
+      --accent: #00bfff;
+      --badge-bg: #2a2a2a;
+    }
+
+    body.light-mode {
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --text: #121212;
+      --accent: #007acc;
+      --badge-bg: #e0e0e0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 0 auto 2rem;
+    }
+
+    .search-input,
+    .filter-select,
+    .toggle-mode {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      background: var(--card);
+      color: var(--text);
+    }
+
+    .toggle-mode {
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .category {
+      background-color: var(--card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: background-color 0.3s;
+      position: relative;
+    }
+
+    .category:hover {
+      background-color: rgba(255,255,255,0.05);
+    }
+
+    .category img {
+      width: 50px;
+      margin-bottom: 0.5rem;
+    }
+
+    .category a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .category p {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .tag {
+      background: var(--badge-bg);
+      color: var(--text);
+      font-size: 0.7rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--accent);
+      color: white;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.75rem;
+      border-radius: 999px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+    footer {
+  text-align: center;
+  padding: 1em;
+  background: #111;
+  color: white;
+  position: fixed; /* Positions the footer relative to the viewport */
+  bottom: 0; /* Anchors the footer to the bottom */
+  width: 100%; /* Makes the footer span the entire width */
+}
+
+footer .socials a {
+ 
+  color: white;
+  font-size: 1em;
+  text-decoration: none;
+
+  margin: 0 0.5em;
+
+  font-size: 1em;
+  text-decoration: none;
+}
+  </style>
+</head>
+<body>
+
+  <h2>Tutorial Categories</h2>
+
+  <div class="top-bar">
+    <input type="text" id="search" class="search-input" placeholder="Search categories...">
+    <select id="levelFilter" class="filter-select">
+      <option value="">All Levels</option>
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate">Intermediate</option>
+      <option value="Advanced">Advanced</option>
+    </select>
+    <button class="toggle-mode" onclick="toggleMode()">🌗 Toggle Mode</button>
+  </div>
+
+  <div class="categories" id="categories">
+    <div class="category" data-level="Beginner">
+      <span class="badge">6 Tutorials</span>
+      <img src="https://img.icons8.com/color/48/html-5--v1.png" alt="HTML">
+      <a href="html-tutorials.html">HTML</a>
+      <p>Structure your web pages</p>
+      <div class="tags">
+        <span class="tag">Frontend</span>
+        <span class="tag">Markup</span>
+      </div>
+    </div>
+
+    <div class="category" data-level="Beginner">
+      <span class="badge">5 Tutorials</span>
+      <img src="https://img.icons8.com/color/48/css3.png" alt="CSS">
+      <a href="css-tutorials.html">CSS</a>
+      <p>Style and layout techniques</p>
+      <div class="tags">
+        <span class="tag">Frontend</span>
+        <span class="tag">Design</span>
+      </div>
+    </div>
+
+    <div class="category" data-level="Intermediate">
+      <span class="badge">8 Tutorials</span>
+      <img src="https://img.icons8.com/color/48/javascript.png" alt="JS">
+      <a href="javascript-tutorials.html">JavaScript</a>
+      <p>Make your site interactive</p>
+      <div class="tags">
+        <span class="tag">Frontend</span>
+        <span class="tag">Programming</span>
+      </div>
+    </div>
+
+    <div class="category" data-level="Intermediate">
+      <span class="badge">4 Tutorials</span>
+      <img src="https://img.icons8.com/color/48/react-native.png" alt="React">
+      <a href="react-tutorials.html">React</a>
+      <p>Build modern web apps</p>
+      <div class="tags">
+        <span class="tag">Frontend</span>
+        <span class="tag">SPA</span>
+      </div>
+    </div>
+
+    <div class="category" data-level="Beginner">
+      <span class="badge">6 Tutorials</span>
+      <img src="https://img.icons8.com/color/48/python.png" alt="Python">
+      <a href="python-tutorials.html">Python</a>
+      <p>Back-end and scripting</p>
+      <div class="tags">
+        <span class="tag">Backend</span>
+        <span class="tag">Automation</span>
+      </div>
+    </div>
+
+    <div class="category" data-level="Intermediate">
+      <span class="badge">3 Tutorials</span>
+      <img src="https://img.icons8.com/color/48/responsive.png" alt="Responsive Design">
+      <a href="responsive-design.html">Responsive Design</a>
+      <p>Mobile-first layouts</p>
+      <div class="tags">
+        <span class="tag">Design</span>
+        <span class="tag">CSS</span>
+      </div>
+    </div>
+
+    <div class="category" data-level="Advanced">
+      <span class="badge">4 Tutorials</span>
+      <img src="https://img.icons8.com/color/48/api-settings.png" alt="API">
+      <a href="api-tutorials.html">APIs</a>
+      <p>Data fetching & integration</p>
+      <div class="tags">
+        <span class="tag">Backend</span>
+        <span class="tag">Integration</span>
+      </div>
+    </div>
+
+    <div class="category" data-level="Advanced">
+      <span class="badge">5 Tutorials</span>
+      <img src="https://img.icons8.com/color/48/nodejs.png" alt="Node.js">
+      <a href="nodejs-tutorials.html">Node.js</a>
+      <p>JavaScript on the server</p>
+      <div class="tags">
+        <span class="tag">Backend</span>
+        <span class="tag">Server</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const levelFilter = document.getElementById('levelFilter');
+    const categories = document.querySelectorAll('.category');
+
+    // Restore theme from localStorage
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode');
+    }
+
+    function filterCategories() {
+      const search = searchInput.value.toLowerCase();
+      const level = levelFilter.value;
+
+      categories.forEach(cat => {
+        const text = cat.innerText.toLowerCase();
+        const catLevel = cat.dataset.level;
+
+        const matchesSearch = text.includes(search);
+        const matchesLevel = !level || catLevel === level;
+
+        cat.classList.toggle('hidden', !(matchesSearch && matchesLevel));
+      });
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle('light-mode');
+      const isLight = document.body.classList.contains('light-mode');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+
+    searchInput.addEventListener('input', filterCategories);
+    levelFilter.addEventListener('change', filterCategories);
+  </script>
+
+</body>
+</html>

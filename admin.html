@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - Kassa Academy</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <script>
+    if (localStorage.getItem('isAdmin') !== 'true') {
+      alert('Access restricted to admin only.');
+      window.location.href = 'signin.html';
+    }
+  </script>
+
+  <section id="adminPanel">
+    <h2>Admin Panel</h2>
+    <button onclick="logout()">Logout</button>
+
+    <form id="newCourseForm">
+      <input id="courseTitle" type="text" placeholder="Course Title" required />
+      <select id="courseCategory" required>
+        <option value="">Select Category</option>
+        <option value="Programming">Programming</option>
+        <option value="Design">Design</option>
+      </select>
+      <textarea id="courseDescription" placeholder="Course Description"></textarea>
+      <button type="submit">Add Course</button>
+    </form>
+
+    <form id="uploadTutorialForm">
+      <input id="lessonTitle" type="text" placeholder="Lesson Title" required />
+      <input id="videoURL" type="url" placeholder="Video URL" required />
+      <textarea id="lessonQuestion" placeholder="Question for Lesson"></textarea>
+      <select id="lessonStatus" required>
+        <option value="Incomplete">Incomplete</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <button type="submit">Upload</button>
+    </form>
+
+    <div id="userMessages">
+      <h3>User Messages</h3>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    function logout() {
+      localStorage.removeItem('isAdmin');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kassa Academy</title>
+  <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ 
+  <style>
+    body {
+     display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fdfdfd;
+  color: #000000;
+    }
+
+    h2 {
+      text-align: center;
+      color: #007acc;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: #adacac;;
+      padding: 2rem;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border: none;
+      border-radius: 6px;
+      background-color: rgb(214, 213, 213);
+      color: #000000;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #007acc;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #009ad6;
+      opacity: 0.8;
+    }
+
+    .success {
+      margin-top: 1rem;
+      color: #12e257;
+      text-align: center;
+    }
+  </style>
+</head>
+
+
+<body>
+   <header>
+      <h1>Kassa Academy </h1>
+    
+      <div class="nav_bar">
+        <nav> <a class="active" href="index.html">Home</a>
+          <a href="tutorials.html">Tutorials</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="signin.html">Sign In</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<div>
+ 
+
+<h2>Contact Us</h2>
+
+  <form id="contactForm">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Your Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Your Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Send Message</button>
+
+    <p class="success" id="successMessage" style="display: none;">Thank you! Your message has been sent.</p>
+  </form>
+
+  </div>
+</main>
+  <footer>
+      
+        <p>Follow us on:</p>
+  <div class="socials">
+    <a href="https://www.facebook.com/kassaacademy" target="_blank">
+      <i class="fab fa-facebook-f"></i></a> 
+    <a href="https://www.instagram.com/kassaacademy" target="_blank">
+      <i class="fab fa-instagram"></i></a> 
+    <a href="https://www.x.com/kassaacademy" target="_blank">
+      <i class="fabfa-x-twitter"></i> (X)</a> 
+    <a href="https://www.linkedin.com/company/kassaacademy" target="_blank">
+      <i class="fab fa-linkedin"></i></a> 
+    <a href="https://www.youtube.com/@kassaacademy" target="_blank">
+      <i class="fab fa-youtube"></i></a>
+    <a href="https://www.tiktok.com/@kassaacademy" target="_blank">
+      <i class="fab fa-tiktok"></i></a> 
+    <a href="https://www.pinterest.com/kassaacademy" target="_blank">
+      <i class="fab fa-pinterest"></i></a> 
+    <a href="mailto:contact@kassaacademy.com" target="_blank">
+      <i class="fas fa-envelope"></i> </a>
+  </div>
+
+      <p>&copy; 2025 Kassa Photography</p>
+    </footer>
+ <script>
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Basic validation (HTML5 already handles required fields)
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      if (name && email && message) {
+        // Here you can add actual sending logic (e.g. using Formspree, EmailJS, or your backend)
+        successMessage.style.display = 'block';
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
+
